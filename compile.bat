@@ -1,39 +1,44 @@
 @echo off
 
-echo Compiling %1...
-cd %1
+ECHO Compiling %1...
+CD %1
 
-if not exist build (
+IF not EXIST build (
     mkdir build
 )
 
-if not exist app (
+IF not EXIST app (
     mkdir app
 )
 
-cd build
-del /q *.o
+CD build
+
+IF EXIST *.o (
+    DEL /q *.o
+)
 
 g++ -c ../source/*.cpp
 
-cd ../app
+CD ../app
 
-if exist app del app
+IF EXIST app.exe DEL app.exe
+
+@pause
 
 g++ -o app ../build/*.o
 
-cd ..
+CD ..
 
-rmdir /s /q build
+RMDIR /s /q build
 
-echo Operation completed!
-echo Starting th app...
+ECHO Operation completed!
+ECHO Starting the app...
 
-cd app
+CD app
 
 start app.exe
 
-cd ..
+CD ../..
 
 
 

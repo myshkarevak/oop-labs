@@ -10,6 +10,6 @@ IF not exist %1 (
     exit /b 1
 )
 
-echo Running %1...
+ECHO Running %1...
 
-call compile.bat %1
+CALL compile.bat %1
