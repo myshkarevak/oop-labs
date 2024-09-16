@@ -123,7 +123,7 @@ public:
 
         for (int i = 0; i < count; i++)
         {
-            resultString.data[i] = data[index + i];
+            resultString.data[i] = this->data[index + i];
         }
 
         resultString.data[count] = END_OF_LINE;
@@ -143,12 +143,12 @@ public:
 
         for (int i = 0; i < index; i++)
         {
-            newData[i] = data[i];
+            newData[i] = this->data[i];
         }
 
         for (int i = index; i < newLength; i++)
         {
-            newData[i] = data[i + count];
+            newData[i] = this->data[i + count];
         }
 
         newData[newLength] = END_OF_LINE;
@@ -178,7 +178,7 @@ public:
 
         for (int i = 0; i < index; i++)
         {
-            newData[i] = data[i];
+            newData[i] = this->data[i];
         }
 
         for (int i = 0; i < insertLength; i++)
@@ -188,7 +188,7 @@ public:
 
         for (int i = index; i < length; i++)
         {
-            newData[insertLength + i] = data[i];
+            newData[insertLength + i] = this->data[i];
         }
 
         newData[newLength] = END_OF_LINE;
@@ -207,14 +207,15 @@ public:
     void trim()
     {
         int start = 0;
-        while (data[start] == SPACE_SYMBOL && start < length)
+
+        while (this->data[start] == SPACE_SYMBOL && start < length)
         {
             start++;
         }
 
         int end = length - 1;
 
-        while (data[end] == SPACE_SYMBOL && end >= start)
+        while (this->data[end] == SPACE_SYMBOL && end >= start)
         {
             end--;
         }
@@ -224,7 +225,7 @@ public:
 
         for (int i = 0; i < newLength; i++)
         {
-            newData[i] = data[start + i];
+            newData[i] = this->data[start + i];
         }
 
         newData[newLength] = END_OF_LINE;
