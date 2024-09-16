@@ -39,9 +39,3 @@ CD app
 start app.exe
 
 CD ../..
-
-
-
-
-
-
