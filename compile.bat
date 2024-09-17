@@ -46,10 +46,12 @@ CD ..
 RMDIR /s /q build
 
 ECHO Operation completed!
-ECHO Starting the app...
+ECHO Starting %1...
 
 CD app
 
 start app.exe
 
 CD ../..
+
+ECHO DONE!
