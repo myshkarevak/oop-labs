@@ -14,7 +14,7 @@ public:
         this->stringValue = "";
     }
 
-    ClassOne(int integerValue, string stringValue)
+    ClassOne(const int integerValue, const string stringValue)
     {
         this->integerValue = integerValue;
         this->stringValue = stringValue;
@@ -26,12 +26,12 @@ public:
         this->stringValue = objectToCopy.stringValue;
     }
 
-    void setIntegerValue(int integerValue)
+    void setIntegerValue(const int integerValue)
     {
         this->integerValue = integerValue;
     }
 
-    void setStringValue(string stringValue)
+    void setStringValue(const string stringValue)
     {
         this->stringValue = stringValue;
     }

@@ -1,20 +1,23 @@
 #include "ClassTwo.cpp"
 
-int main() {
+int main()
+{
     ClassOne objectOfClassOne(10, "test string");
     ClassTwo objectOfClassTwo(objectOfClassOne, 13.4);
 
-    cout << "ObjectOfClassOne:" << endl;
+    cout << "ObjectOfClassOne: ";
 
     objectOfClassOne.print();
 
-    cout << endl;
+    cout << endl
+         << endl;
 
-    cout << "ObjectOfClassTwo" << endl;
+    cout << "ObjectOfClassTwo: ";
 
     objectOfClassTwo.print();
 
-    cout << endl;
+    cout << endl
+         << endl;
 
     system("pause");
 
