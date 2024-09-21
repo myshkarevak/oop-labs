@@ -15,7 +15,7 @@ public:
         this->doubleValue = 0.0;
     }
 
-    ClassTwo(const ClassOne &objectOfClassOne, double doubleValue)
+    ClassTwo(const ClassOne &objectOfClassOne, const double doubleValue)
     {
         this->objectOfClassOnePointer = new ClassOne(objectOfClassOne);
         this->doubleValue = doubleValue;
@@ -32,12 +32,12 @@ public:
         delete this->objectOfClassOnePointer;
     }
 
-    void setObjectOfClassOnePointer(ClassOne *objectOfClassOnePointer)
+    void setObjectOfClassOnePointer(const ClassOne &objectOfClassOnePointer)
     {
-        this->objectOfClassOnePointer = new ClassOne(*objectOfClassOnePointer);
+        this->objectOfClassOnePointer = new ClassOne(objectOfClassOnePointer);
     }
 
-    void setDoubleValue(double doubleValue)
+    void setDoubleValue(const double doubleValue)
     {
         this->doubleValue = doubleValue;
     }
