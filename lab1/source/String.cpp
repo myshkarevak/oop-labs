@@ -109,7 +109,7 @@ public:
         return resultString;
     }
 
-    String getSubstring(int index, int count)
+    String getSubstring(const int index, const int count)
     {
         if (index < 0 || index >= length || count <= 0 || index + count > length)
         {
@@ -131,7 +131,7 @@ public:
         return resultString;
     }
 
-    void removeSubstring(int index, int count)
+    void removeSubstring(const int index, const int count)
     {
         if (index < 0 || index >= length || count < 0 || index + count > length)
         {
@@ -159,7 +159,7 @@ public:
         this->length = newLength;
     }
 
-    void insert(char *stringToInsert, int index)
+    void insert(const char *stringToInsert, const int index)
     {
         if (index < 0 || index > length)
         {
@@ -199,7 +199,7 @@ public:
         this->length = newLength;
     }
 
-    void insert(String stringToInsert, int index)
+    void insert(const String stringToInsert, const int index)
     {
         this->insert(stringToInsert.data, index);
     }

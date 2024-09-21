@@ -40,7 +40,7 @@ public:
         this->denominator = 1;
     }
 
-    Fraction(int numerator, int denominator)
+    Fraction(const int numerator, int denominator)
     {
         this->numerator = numerator;
         this->denominator = denominator;
