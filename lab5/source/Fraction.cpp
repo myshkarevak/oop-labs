@@ -1,27 +1,32 @@
 #include <iostream>
+#include <stdexcept>
+#include <type_traits>
+
 using namespace std;
 
+template <typename T>
 class Fraction
 {
-private:
-    int numerator;
-    int denominator;
+    static_assert(is_arithmetic<T>::value, "Template parameter must be a numeric type.");
 
-    const int gcd(int numerator, int denominator)
+private:
+    T numerator;
+    T denominator;
+
+    const T gcd(T numerator, T denominator)
     {
         while (denominator != 0)
         {
-            const int temp = denominator;
+            const T temp = denominator;
             denominator = numerator % denominator;
             numerator = temp;
         }
-
         return numerator;
     }
 
     void reduce()
     {
-        const int divisor = gcd(this->numerator, this->denominator);
+        const T divisor = gcd(this->numerator, this->denominator);
 
         this->numerator /= divisor;
         this->denominator /= divisor;
@@ -40,40 +45,39 @@ public:
         this->denominator = 1;
     }
 
-    Fraction(const int numerator, int denominator)
+    Fraction(const T numerator, const T denominator)
     {
-        this->numerator = numerator;
-        this->denominator = denominator;
-
         if (denominator == 0)
         {
-            cerr << "Error: denominator cannot be zero! Using 1 instead..." << endl;
-            denominator = 1;
+            throw invalid_argument("Error: denominator cannot be zero!");
         }
+
+        this->numerator = numerator;
+        this->denominator = denominator;
 
         this->reduce();
     }
 
     Fraction operator+(const Fraction &fractionToAdd)
     {
-        const int numerator = this->numerator * fractionToAdd.denominator + fractionToAdd.numerator * this->denominator;
-        const int denominator = this->denominator * fractionToAdd.denominator;
+        const T numerator = this->numerator * fractionToAdd.denominator + fractionToAdd.numerator * this->denominator;
+        const T denominator = this->denominator * fractionToAdd.denominator;
 
         return Fraction(numerator, denominator);
     }
 
     Fraction operator-(const Fraction &fractionToSubtract)
     {
-        const int numerator = this->numerator * fractionToSubtract.denominator - fractionToSubtract.numerator * this->denominator;
-        const int denominator = this->denominator * fractionToSubtract.denominator;
+        const T numerator = this->numerator * fractionToSubtract.denominator - fractionToSubtract.numerator * this->denominator;
+        const T denominator = this->denominator * fractionToSubtract.denominator;
 
         return Fraction(numerator, denominator);
     }
 
     Fraction operator*(const Fraction &fractionToMultiply)
     {
-        const int numerator = this->numerator * fractionToMultiply.numerator;
-        const int denominator = this->denominator * fractionToMultiply.denominator;
+        const T numerator = this->numerator * fractionToMultiply.numerator;
+        const T denominator = this->denominator * fractionToMultiply.denominator;
 
         return Fraction(numerator, denominator);
     }
@@ -82,11 +86,11 @@ public:
     {
         if (fractionToDivide.numerator == 0)
         {
-            cerr << "Error: division by zero!" << std::endl;
-            return Fraction(0, 1);
+            throw domain_error("Error: division by zero!");
         }
-        const int numerator = this->numerator * fractionToDivide.denominator;
-        const int denominator = this->denominator * fractionToDivide.numerator;
+
+        const T numerator = this->numerator * fractionToDivide.denominator;
+        const T denominator = this->denominator * fractionToDivide.numerator;
 
         return Fraction(numerator, denominator);
     }
@@ -106,7 +110,7 @@ public:
         return this->numerator * otherFraction.denominator < otherFraction.numerator * this->denominator;
     }
 
-    bool operator>(const Fraction &otherFraction) const
+    bool operator>(const Fraction &otherFraction)
     {
         return this->numerator * otherFraction.denominator > otherFraction.numerator * this->denominator;
     }
@@ -134,7 +138,7 @@ public:
 
     friend istream &operator>>(istream &input, Fraction &currentFraction)
     {
-        int numerator = 0, denominator = 0;
+        T numerator = 0, denominator = 0;
 
         cout << "Input numerator: ";
         input >> numerator;
@@ -142,8 +146,15 @@ public:
         cout << "Input denominator: ";
         input >> denominator;
 
+        if (denominator == 0)
+        {
+            throw invalid_argument("Error: denominator cannot be zero!");
+        }
+
         currentFraction.numerator = numerator;
         currentFraction.denominator = denominator;
+
+        currentFraction.reduce();
 
         return input;
     }

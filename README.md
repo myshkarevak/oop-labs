@@ -1,6 +1,7 @@
 # OOP-labs
 ## Prerequisites
 - minGW & g++
+- QT for Lab 6 [download](https://d13lb3tujbc8s0.cloudfront.net/onlineinstallers/qt-online-installer-windows-x64-4.8.0.exe)
 ## How to use
 1. Clone the repo
 ```
@@ -21,4 +22,7 @@ For cmd:
 ```
 run lab1
 ```
+
+## Lab 6
+To open the Lab project open lab6/lab6.pro with QTCreator
 
