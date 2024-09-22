@@ -264,7 +264,7 @@ public:
 
         currentString.data = new char[currentString.length + 1];
 
-        for (size_t i = 0; i < currentString.length; i++)
+        for (int i = 0; i < currentString.length; i++)
         {
             currentString.data[i] = buffer[i];
         }
